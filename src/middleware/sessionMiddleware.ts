@@ -46,4 +46,24 @@ const checkBlacklistedToken = async (req: Request, res: Response, next: NextFunc
   }
 };
 
-export { blacklistToken, checkBlacklistedToken };
+const handleRefreshToken = async (req: Request, res: Response, next: NextFunction) => {
+  const { refreshToken } = req.body;
+
+  if (!refreshToken) {
+    return res.status(400).json({ message: 'Refresh token missing' });
+  }
+
+  try {
+    const decodedToken: any = jwt.verify(refreshToken, process.env.JWT_SECRET!);
+    const userId = decodedToken.userId;
+
+    const newAccessToken = jwt.sign({ userId }, process.env.JWT_SECRET!, { expiresIn: '1h' });
+    const newRefreshToken = jwt.sign({ userId }, process.env.JWT_SECRET!, { expiresIn: '7d' });
+
+    res.status(200).json({ accessToken: newAccessToken, refreshToken: newRefreshToken });
+  } catch (error) {
+    res.status(401).json({ message: 'Invalid refresh token', error });
+  }
+};
+
+export { blacklistToken, checkBlacklistedToken, handleRefreshToken };

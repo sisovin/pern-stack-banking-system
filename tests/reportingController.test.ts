@@ -107,4 +107,39 @@ describe('Reporting Controller', () => {
       expect(res.body.error).toBe('Customer not found');
     });
   });
+
+  describe('GET /financial-statements', () => {
+    it('should generate financial statements for a given date range', async () => {
+      const startDate = '2023-01-01';
+      const endDate = '2023-12-31';
+
+      const res = await request(app).get(`/financial-statements?startDate=${startDate}&endDate=${endDate}`);
+      expect(res.status).toBe(200);
+      expect(res.body).toBeInstanceOf(Array);
+    });
+
+    it('should return 500 if there is an error generating financial statements', async () => {
+      const res = await request(app).get('/financial-statements?startDate=invalid&endDate=invalid');
+      expect(res.status).toBe(500);
+      expect(res.body.error).toBe('Failed to generate financial statements');
+    });
+  });
+
+  describe('GET /reports', () => {
+    it('should generate reports for a given type and date range', async () => {
+      const reportType = 'summary';
+      const startDate = '2023-01-01';
+      const endDate = '2023-12-31';
+
+      const res = await request(app).get(`/reports?reportType=${reportType}&startDate=${startDate}&endDate=${endDate}`);
+      expect(res.status).toBe(200);
+      expect(res.body).toBeInstanceOf(Array);
+    });
+
+    it('should return 500 if there is an error generating reports', async () => {
+      const res = await request(app).get('/reports?reportType=invalid&startDate=invalid&endDate=invalid');
+      expect(res.status).toBe(500);
+      expect(res.body.error).toBe('Failed to generate reports');
+    });
+  });
 });

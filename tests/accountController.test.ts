@@ -79,4 +79,20 @@ describe('Account Management Endpoints', () => {
       expect(res.body).toHaveProperty('message', 'Account deleted successfully');
     });
   });
+
+  describe('GET /accounts/:id/status', () => {
+    it('should track account status by id', async () => {
+      const account = await db.insert(accounts).values({
+        type: 'checking',
+        status: 'active',
+        balance: 500,
+        createdAt: Date.now(),
+        updatedAt: Date.now(),
+      }).returning().first();
+
+      const res = await request(app).get(`/accounts/${account.id}/status`);
+      expect(res.statusCode).toEqual(200);
+      expect(res.body).toHaveProperty('status', 'active');
+    });
+  });
 });

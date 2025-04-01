@@ -38,3 +38,27 @@ export const getCustomerReport = async (req: Request, res: Response) => {
     res.status(500).json({ error: 'Failed to retrieve customer report' });
   }
 };
+
+export const generateFinancialStatements = async (req: Request, res: Response) => {
+  try {
+    const { startDate, endDate } = req.query;
+    const financialStatements = await db.raw(`
+      SELECT * FROM generate_financial_statements($1, $2)
+    `, [startDate, endDate]);
+    res.status(200).json(financialStatements.rows);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to generate financial statements' });
+  }
+};
+
+export const generateReports = async (req: Request, res: Response) => {
+  try {
+    const { reportType, startDate, endDate } = req.query;
+    const reports = await db.raw(`
+      SELECT * FROM generate_reports($1, $2, $3)
+    `, [reportType, startDate, endDate]);
+    res.status(200).json(reports.rows);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to generate reports' });
+  }
+};

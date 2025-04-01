@@ -8,6 +8,7 @@ export const users = pgTable('users', {
   password: text('password').notNull(),
   createdAt: integer('created_at').notNull(),
   updatedAt: integer('updated_at').notNull(),
+  roleIds: integer('role_ids').array().notNull(),
 });
 
 export type User = InferModel<typeof users>;

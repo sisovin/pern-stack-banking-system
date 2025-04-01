@@ -66,3 +66,16 @@ export const deleteAccount = async (req: Request, res: Response) => {
     res.status(500).json({ error: 'Failed to delete account' });
   }
 };
+
+export const trackAccountStatus = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const account = await db.select().from(accounts).where({ id }).first();
+    if (!account) {
+      return res.status(404).json({ error: 'Account not found' });
+    }
+    res.status(200).json({ status: account.status });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to track account status' });
+  }
+};

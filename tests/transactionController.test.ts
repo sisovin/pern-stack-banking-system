@@ -83,4 +83,38 @@ describe('Transaction Endpoints', () => {
       expect(res.body).toHaveProperty('message', 'Transaction deleted successfully');
     });
   });
+
+  describe('POST /transactions/:id/authorize', () => {
+    it('should authorize a transaction by id', async () => {
+      const transaction = await db.insert(transactions).values({
+        type: 'deposit',
+        status: 'pending',
+        amount: 1000,
+        accountId: 1,
+        createdAt: Date.now(),
+        updatedAt: Date.now(),
+      }).returning().first();
+
+      const res = await request(app).post(`/transactions/${transaction.id}/authorize`);
+      expect(res.statusCode).toEqual(200);
+      expect(res.body).toHaveProperty('status', 'authorized');
+    });
+  });
+
+  describe('POST /transactions/:id/reject', () => {
+    it('should reject a transaction by id', async () => {
+      const transaction = await db.insert(transactions).values({
+        type: 'deposit',
+        status: 'pending',
+        amount: 1000,
+        accountId: 1,
+        createdAt: Date.now(),
+        updatedAt: Date.now(),
+      }).returning().first();
+
+      const res = await request(app).post(`/transactions/${transaction.id}/reject`);
+      expect(res.statusCode).toEqual(200);
+      expect(res.body).toHaveProperty('status', 'rejected');
+    });
+  });
 });

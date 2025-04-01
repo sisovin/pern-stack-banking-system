@@ -136,4 +136,41 @@ describe('Customer Controller', () => {
       expect(deletedCustomer).toBeUndefined();
     });
   });
+
+  describe('PUT /customers/:id/verify', () => {
+    it('should verify a customer by ID', async () => {
+      const newCustomer = {
+        firstName: 'Charlie',
+        lastName: 'Green',
+        email: 'charlie.green@example.com',
+        phoneNumber: '7778889999',
+        address: '202 Main St',
+        dateOfBirth: '1995-05-05',
+        kycStatus: 'unverified',
+      };
+
+      const createdCustomer = await db
+        .insert(customers)
+        .values(newCustomer)
+        .returning()
+        .then((rows) => rows[0]);
+
+      const response = await request(app)
+        .put(`/customers/${createdCustomer.id}/verify`)
+        .expect(200);
+
+      expect(response.body.id).toBe(createdCustomer.id);
+      expect(response.body.kycStatus).toBe('verified');
+    });
+  });
+
+  describe('GET /customers', () => {
+    it('should retrieve all customers', async () => {
+      const response = await request(app)
+        .get('/customers')
+        .expect(200);
+
+      expect(Array.isArray(response.body)).toBe(true);
+    });
+  });
 });

@@ -1,2 +1,1 @@
-# pern-stack-banking-system
-A repository for a PERN stack banking system
+This repository is empty. Any task executed on it should be considered a new capability and needs to be created.

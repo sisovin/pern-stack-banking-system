@@ -1,179 +1,323 @@
-# Pern-Stack-Banking-System
+# PERN Stack Banking System
 
-## Project Description
+A comprehensive banking system built using the PERN stack (PostgreSQL, Express, React, Node.js).
 
-Pern-Stack-Banking-System is a comprehensive banking system built using the PERN stack (PostgreSQL, Express, React, Node.js). This project aims to provide a robust and secure platform for managing banking operations, including user authentication, account management, transaction processing, and financial reporting.
+## Project Structure
 
-## Development Plan
+This project is organized into two main parts:
 
-### Phase 1: Project Setup and Core Infrastructure
+- \`backend/\`: Express.js API with PostgreSQL database using Drizzle ORM
+- \`frontend/\`: React application with TypeScript, Material-UI and Tailwind CSS
 
-1. **Initialize Project Structure**
-   - Set up Node.js/TypeScript project
-   - Configure build tools (tsconfig, eslint, prettier)
-   - Create basic folder structure (src/, tests/, etc.)
+## Getting Started
 
-2. **Database Setup**
-   - Install and configure PostgreSQL
-   - Set up Drizzle ORM with migrations
-   - Create initial database connection setup
+### Prerequisites
 
-3. **Security Foundation**
-   - Implement Argon2 password hashing utility
-   - Set up JWT token generation/verification
-   - Create refresh token handling system
+- Node.js (v18 or later)
+- PostgreSQL (v14 or later)
+- npm or yarn
 
-### Phase 2: Authentication & Authorization System
-
-1. **User Management**
-   - Create User model with essential fields
-   - Implement registration endpoint with password hashing
-   - Build login endpoint with JWT issuance
-
-2. **Role-Based Access Control**
-   - Design Role and Permission models
-   - Create role-permission assignment system
-   - Implement middleware for permission checking
-
-3. **Session Management**
-   - Set up refresh token rotation
-   - Implement token blacklisting/revocation
-   - Create logout functionality
-
-### Phase 3: Core Banking Models
-
-1. **Account System**
-   - Design Account model with types (savings, checking, etc.)
-   - Implement account creation/management
-   - Set up account status tracking (active, frozen, closed)
-
-2. **Customer Management**
-   - Create Customer model with KYC fields
-   - Implement customer-account relationships
-   - Build customer verification workflows
-
-3. **Transaction System**
-   - Design Transaction model with types
-   - Create transaction status tracking
-   - Implement transaction authorization flows
-
-### Phase 4: Accounting System Implementation
-
-1. **Double-Entry Accounting**
-   - Design Journal Entry model
-   - Implement debit/credit validation
-   - Create transaction posting system
-
-2. **Ledger Management**
-   - Build General Ledger structure
-   - Implement subsidiary ledgers
-   - Create ledger posting routines
-
-3. **Financial Statements**
-   - Design Trial Balance generation
-   - Implement Balance Sheet calculation
-   - Build Profit & Loss Statement logic
-
-### Phase 5: Banking Operations
-
-1. **Transaction Processing**
-   - Implement deposit/withdrawal workflows
-   - Create transfer between accounts
-   - Design loan processing system
-
-2. **Interest & Fees**
-   - Implement interest calculation
-   - Create fee assessment system
-   - Build penalty charge handling
-
-3. **Reporting System**
-   - Design account statements
-   - Implement transaction history
-   - Create customer reporting
-
-### Phase 6: Audit & Compliance
-
-1. **Audit Trail**
-   - Implement data change logging
-   - Create system event tracking
-   - Design audit report generation
-
-2. **Reconciliation**
-   - Build daily reconciliation process
-   - Implement discrepancy handling
-   - Create reconciliation reports
-
-3. **Security Monitoring**
-   - Design suspicious activity detection
-   - Implement login attempt tracking
-   - Create security incident reporting
-
-### Phase 7: API & Integration
-
-1. **REST API Design**
-   - Create well-structured endpoints
-   - Implement proper status codes
-   - Design consistent response formats
-
-2. **Web Interface**
-   - Set up basic admin dashboard
-   - Implement customer portal
-   - Create teller/backoffice interfaces
-
-3. **Integration Points**
-   - Design webhook system
-   - Implement API key management
-   - Create third-party integration support
-
-### Phase 8: Testing & Deployment
-
-1. **Testing Strategy**
-   - Implement unit tests for core logic
-   - Create integration tests for workflows
-   - Design end-to-end scenario testing
-
-2. **Deployment Setup**
-   - Configure production database
-   - Set up CI/CD pipeline
-   - Implement environment management
-
-3. **Monitoring**
-   - Design health check system
-   - Implement performance metrics
-   - Create alerting system
-
-## Project Setup
-
-To set up the project, follow these steps:
+### Installation
 
 1. Clone the repository:
-   ```bash
-   git clone https://github.com/githubnext/workspace-blank.git
-   cd workspace-blank
-   ```
+   \`\`\`bash
+   git clone <repository-url>
+   cd pern-stack-banking-system
+   \`\`\`
 
 2. Install dependencies:
-   ```bash
-   npm install
-   ```
+   \`\`\`bash
+   npm run install:all
+   \`\`\`
 
-3. Set up environment variables:
-   Create a `.env` file in the root directory and add the necessary environment variables. For example:
-   ```env
-   DATABASE_URL=your_database_url
-   JWT_SECRET=your_jwt_secret
-   ```
+3. Configure environment variables:
+   - Create \`.env\` files in both \`backend/\` and \`frontend/\` directories
+   - See the README in each directory for required variables
 
-4. Run database migrations:
-   ```bash
-   npm run migrate
-   ```
+### Running the Application
 
-## Running the Project
-
-To run the project, use the following command:
-```bash
+Start both the backend and frontend:
+\`\`\`bash
 npm start
+\`\`\`
+
+Or run them separately:
+\`\`\`bash
+npm run start:backend
+npm run start:frontend
+\`\`\`
+
+## Features
+
+- User authentication and authorization
+- Account management
+- Transaction processing
+- Financial reporting
+- Double-entry accounting
+- API documentation
+- User roles and permissions
+
+
+## Full Project Structure
+
+The project structure provides a comprehensive file/folder structure for your PERN Stack Banking System that supports both the backend and frontend requirements. The structure will incorporate TypeScript, Redux for state management, Material-UI with Tailwind CSS, unit testing, internationalization, responsive design, JWT authentication, and file upload capabilities.
+
+### Root Directory Structure
+
+```
+pern-stack-banking-system/
+├── .github/                      # GitHub Actions workflows for CI/CD
+├── backend/                      # Backend Express application
+├── frontend/                     # Frontend React application
+├── shared/                       # Shared TypeScript interfaces/types
+├── .gitignore                    # Git ignore file
+├── README.md                     # Project README
+├── docker-compose.yml            # Docker setup for development
+└── package.json                  # Root package.json for workspace scripts
 ```
 
-This will start the Express server and make the API available at `http://localhost:3000`.
+### Backend Structure
+
+```
+backend/
+├── src/
+│   ├── config/                   # Configuration files
+│   │   ├── database.ts           # Database connection configuration
+│   │   ├── jwt.ts                # JWT configuration
+│   │   ├── logging.ts            # Logging configuration
+│   │   └── env.ts                # Environment variables management
+│   │
+│   ├── controllers/              # Request handlers
+│   │   ├── auth/                 # Authentication controllers
+│   │   ├── users/                # User management controllers
+│   │   ├── accounts/             # Account management controllers
+│   │   ├── customers/            # Customer management controllers
+│   │   ├── transactions/         # Transaction controllers
+│   │   ├── accounting/           # Accounting system controllers
+│   │   └── reports/              # Reporting controllers
+│   │
+│   ├── db/                       # Database related files
+│   │   ├── migrations/           # Drizzle migrations
+│   │   ├── schema/               # Drizzle schema definitions
+│   │   │   ├── users.ts
+│   │   │   ├── roles.ts
+│   │   │   ├── accounts.ts
+│   │   │   ├── customers.ts
+│   │   │   ├── transactions.ts
+│   │   │   ├── journalEntries.ts
+│   │   │   └── ...
+│   │   ├── index.ts              # Database connection
+│   │   └── seed.ts               # Seed data for development
+│   │
+│   ├── middleware/               # Express middleware
+│   │   ├── auth.ts               # Authentication middleware
+│   │   ├── rbac.ts               # Role-based access control
+│   │   ├── validation.ts         # Request validation
+│   │   ├── errorHandler.ts       # Error handling
+│   │   └── audit.ts              # Audit logging middleware
+│   │
+│   ├── models/                   # Business logic models
+│   │   ├── user.ts
+│   │   ├── role.ts
+│   │   ├── account.ts
+│   │   ├── customer.ts
+│   │   ├── transaction.ts
+│   │   ├── journalEntry.ts
+│   │   └── ...
+│   │
+│   ├── routes/                   # API route definitions
+│   │   ├── auth.ts
+│   │   ├── users.ts
+│   │   ├── accounts.ts
+│   │   ├── customers.ts
+│   │   ├── transactions.ts
+│   │   └── ...
+│   │
+│   ├── services/                 # Business logic services
+│   │   ├── auth/                 # Authentication services
+│   │   ├── user/                 # User services
+│   │   ├── account/              # Account services
+│   │   ├── transaction/          # Transaction services
+│   │   ├── accounting/           # Accounting services
+│   │   └── ...
+│   │
+│   ├── utils/                    # Utility functions
+│   │   ├── passwords.ts          # Password hashing (Argon2)
+│   │   ├── tokens.ts             # JWT handling
+│   │   ├── validation.ts         # Input validation
+│   │   └── ...
+│   │
+│   ├── types/                    # TypeScript type definitions
+│   │   ├── express.d.ts          # Express type extensions
+│   │   └── ...
+│   │
+│   ├── app.ts                    # Express app setup
+│   └── server.ts                 # Server entry point
+│
+├── tests/                        # Test files
+│   ├── unit/                     # Unit tests
+│   ├── integration/              # Integration tests
+│   └── e2e/                      # End-to-end tests
+│
+├── .env.example                  # Example environment variables
+├── .eslintrc.js                  # ESLint configuration
+├── jest.config.js                # Jest configuration
+├── nodemon.json                  # Nodemon configuration
+├── package.json                  # Dependencies and scripts
+├── tsconfig.json                 # TypeScript configuration
+└── README.md                     # Backend documentation
+```
+
+### Frontend Structure (React with Vite)
+
+```
+frontend/
+├── public/                       # Static assets
+│   ├── favicon.ico
+│   ├── locales/                  # i18n translation files
+│   │   ├── en/
+│   │   └── ...
+│   └── ...
+│
+├── src/
+│   ├── assets/                   # Images, fonts, etc.
+│   │
+│   ├── components/               # Reusable components
+│   │   ├── common/               # Shared components
+│   │   │   ├── Button/
+│   │   │   ├── Card/
+│   │   │   ├── Modal/
+│   │   │   └── ...
+│   │   ├── layout/               # Layout components
+│   │   │   ├── Header/
+│   │   │   ├── Sidebar/
+│   │   │   ├── Footer/
+│   │   │   └── ...
+│   │   ├── auth/                 # Auth-related components
+│   │   ├── accounts/             # Account components
+│   │   ├── transactions/         # Transaction components
+│   │   └── ...
+│   │
+│   ├── config/                   # Configuration
+│   │   ├── api.ts                # API configuration
+│   │   └── theme.ts              # MUI theme configuration
+│   │
+│   ├── features/                 # Redux slices and features
+│   │   ├── auth/                 # Authentication slice
+│   │   ├── users/                # Users slice
+│   │   ├── accounts/             # Accounts slice
+│   │   ├── transactions/         # Transactions slice
+│   │   └── ...
+│   │
+│   ├── hooks/                    # Custom hooks
+│   │   ├── useAuth.ts
+│   │   ├── useAccounts.ts
+│   │   └── ...
+│   │
+│   ├── layouts/                  # Page layouts
+│   │   ├── MainLayout.tsx
+│   │   ├── AuthLayout.tsx
+│   │   └── ...
+│   │
+│   ├── pages/                    # Page components
+│   │   ├── auth/                 # Auth pages
+│   │   │   ├── Login.tsx
+│   │   │   ├── Register.tsx
+│   │   │   └── ...
+│   │   ├── dashboard/            # Dashboard pages
+│   │   ├── accounts/             # Account pages
+│   │   ├── customers/            # Customer pages
+│   │   ├── transactions/         # Transaction pages
+│   │   ├── reports/              # Report pages
+│   │   └── ...
+│   │
+│   ├── services/                 # API services
+│   │   ├── api.ts                # Base API setup with axios
+│   │   ├── authService.ts
+│   │   ├── accountService.ts
+│   │   ├── transactionService.ts
+│   │   └── ...
+│   │
+│   ├── store/                    # Redux store
+│   │   ├── index.ts              # Store configuration
+│   │   └── rootReducer.ts        # Root reducer
+│   │
+│   ├── types/                    # TypeScript types
+│   │   ├── auth.ts
+│   │   ├── user.ts
+│   │   ├── account.ts
+│   │   └── ...
+│   │
+│   ├── utils/                    # Utility functions
+│   │   ├── auth.ts               # Auth utilities
+│   │   ├── formatters.ts         # Data formatters
+│   │   ├── validation.ts         # Form validation
+│   │   └── ...
+│   │
+│   ├── App.tsx                   # Main App component
+│   ├── main.tsx                  # Entry point
+│   ├── routes.tsx                # Route definitions
+│   └── vite-env.d.ts             # Vite type definitions
+│
+├── tests/                        # Test files
+│   ├── unit/                     # Unit tests
+│   ├── integration/              # Integration tests
+│   └── e2e/                      # End-to-end tests (Cypress)
+│
+├── .env.example                  # Example environment variables
+├── .eslintrc.js                  # ESLint configuration
+├── index.html                    # HTML entry point
+├── jest.config.js                # Jest configuration
+├── package.json                  # Dependencies and scripts
+├── postcss.config.js             # PostCSS configuration for Tailwind
+├── tailwind.config.js            # Tailwind CSS configuration
+├── tsconfig.json                 # TypeScript configuration
+├── vite.config.ts                # Vite configuration
+└── README.md                     # Frontend documentation
+```
+
+### Shared Types Directory
+
+```
+shared/
+├── src/
+│   ├── interfaces/               # Shared interfaces
+│   │   ├── auth.ts
+│   │   ├── user.ts
+│   │   ├── account.ts
+│   │   ├── transaction.ts
+│   │   └── ...
+│   │
+│   ├── enums/                    # Shared enums
+│   │   ├── accountTypes.ts
+│   │   ├── transactionTypes.ts
+│   │   ├── userRoles.ts
+│   │   └── ...
+│   │
+│   └── index.ts                  # Export all shared types
+│
+├── package.json                  # Package configuration
+└── tsconfig.json                 # TypeScript configuration
+```
+
+### Key Features of this Structure
+
+1. **TypeScript Integration**: Both backend and frontend use TypeScript for type safety.
+
+2. **Redux Setup**: Frontend includes a full Redux setup with slices for different features.
+
+3. **UI Components**: Structured for Material-UI with Tailwind integration.
+
+4. **Responsive Design**: Framework for responsive components with mobile support.
+
+5. **Internationalization**: Includes locales directory for i18n support.
+
+6. **Authentication**: JWT token handling in both backend and frontend.
+
+7. **File Upload**: Backend structure supports file upload features.
+
+8. **Testing**: Comprehensive test structure for all parts of the application.
+
+9. **Network Configuration**: Can be set up for viewing from the specific IP (192.168.50.131).
+
+10. **Modular Structure**: Clear separation of concerns with domain-driven organization.

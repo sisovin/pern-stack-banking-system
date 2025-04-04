@@ -3,6 +3,7 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
+import fileRoutes from './routes/fileRoutes';
 
 const app = express();
 
@@ -16,6 +17,9 @@ app.use(morgan('combined'));
 app.get('/', (req, res) => {
   res.send('Welcome to the Pern-Stack-Banking-System API');
 });
+
+// File routes
+app.use('/api', fileRoutes);
 
 // Start server
 const PORT = process.env.PORT || 3000;
